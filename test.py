@@ -108,3 +108,12 @@ bingo1.check_numbers(6)
 bingo1.check_numbers(4)
 bingo1.check_numbers(10)
 bingo1.check_numbers(7)
+
+test=[]
+with open("Text.txt") as f:
+    for line in f:
+        
+        test.append(line.strip("\n"))
+        
+        
+print(test)
