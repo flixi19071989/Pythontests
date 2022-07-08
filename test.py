@@ -16,12 +16,13 @@ class Bingo():
     def __validate_values(self,bingodata):
         print("...start validate_values")
         checklist = []
-        testnumber = 0
+        testnumber = -1
         for collum in bingodata:
             for row in collum:
                 
-                checklist.append(row)
+                checklist.append(int(row))
         print("...check")
+        print(sorted(checklist))
         for value in sorted(checklist):
             
             if value > testnumber:
@@ -112,8 +113,16 @@ bingo1.check_numbers(7)
 test=[]
 with open("Text.txt") as f:
     for line in f:
-        
-        test.append(line.strip("\n"))
+        line = line.replace("  "," ")
+        line = line.strip("\n ")
+        line = line.split(" ")
+        test.append(line)
         
         
 print(test)
+
+firstline = test[0]
+
+print(firstline)
+#manual readin
+bingo2 = Bingo([test[2],test[3],test[4],test[5],test[6]])
