@@ -13,6 +13,9 @@ class Bingo():
     field=[[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
     checkfield=[[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
 
+    def print(self):
+        print(self.field, self.checkfield)
+
     def __validate_values(self,bingodata):
         print("...start validate_values")
         checklist = []
@@ -54,6 +57,7 @@ class Bingo():
 
     def __init__(self,bingodata):
         print("...Start init class of Bingo")
+        self.checkfield = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
         if self.__validate_rows(bingodata) and self.__validate_collums(bingodata) and self.__validate_values(bingodata):
             print("Bingo Syntax OK")
             self.field=bingodata
@@ -135,3 +139,6 @@ bingolist.append(Bingo([test[14],test[15],test[16],test[17],test[18]]))
 bingolist[0].check_numbers("1")
 bingolist[1].check_numbers("2")
 bingolist[0].check_numbers("2")
+
+bingolist[0].print()
+bingolist[1].print()
