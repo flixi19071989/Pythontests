@@ -10,8 +10,8 @@ from telnetlib import theNULL
 
 
 class Bingo():
-    __field=[[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
-    __checkfield=[[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
+    field=[[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
+    checkfield=[[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
 
     def __validate_values(self,bingodata):
         print("...start validate_values")
@@ -56,19 +56,19 @@ class Bingo():
         print("...Start init class of Bingo")
         if self.__validate_rows(bingodata) and self.__validate_collums(bingodata) and self.__validate_values(bingodata):
             print("Bingo Syntax OK")
-            self.__field=bingodata
+            self.field=bingodata
         else:
             print("Error: Validateerror")
 
     def check_numbers(self,number):
         print("...start check number:",number)
         counter = 0
-        for collum in self.__field:
+        for collum in self.field:
             for row in collum:
                 if number == row:
-                    self.__checkfield[int(counter/5)][counter%5] = 1
+                    self.checkfield[int(counter/5)][counter%5] = 1
                     print("correct Number!!!")
-                    print(self.__checkfield)
+                    print(self.checkfield)
                     self.check_bingo()
                     return True
                 counter+=1
@@ -84,9 +84,9 @@ class Bingo():
         #check rows
         for x in range(5):
             for y in range(5):
-                if self.__checkfield[x][y]==1:
+                if self.checkfield[x][y]==1:
                     counter_rows+=1
-                if self.__checkfield[y][x]==1:
+                if self.checkfield[y][x]==1:
                     counter_collums+=1
                 if counter_collums==5 or counter_rows==5:
                     print("!!!Bingo!!!")
@@ -99,16 +99,16 @@ class Bingo():
         return False
 
 
-bingo1 = Bingo([[1,6,4,20,7],[16,9,8,19,50],[39,46,59,67,21],[48,23,5,34,45],[56,65,87,55,98]])
-bingo1.check_numbers(20)
-bingo1.check_numbers(19)
-bingo1.check_numbers(67)
-bingo1.check_numbers(34)
-bingo1.check_numbers(1)
-bingo1.check_numbers(6)
-bingo1.check_numbers(4)
-bingo1.check_numbers(10)
-bingo1.check_numbers(7)
+#bingo1 = Bingo([[1,6,4,20,7],[16,9,8,19,50],[39,46,59,67,21],[48,23,5,34,45],[56,65,87,55,98]])
+#bingo1.check_numbers(20)
+#bingo1.check_numbers(19)
+#bingo1.check_numbers(67)
+#bingo1.check_numbers(34)
+#bingo1.check_numbers(1)
+#bingo1.check_numbers(6)
+#bingo1.check_numbers(4)
+#bingo1.check_numbers(10)
+#bingo1.check_numbers(7)
 
 test=[]
 with open("Text.txt") as f:
@@ -126,3 +126,12 @@ firstline = test[0]
 print(firstline)
 #manual readin
 bingo2 = Bingo([test[2],test[3],test[4],test[5],test[6]])
+
+bingolist = []
+bingolist.append(Bingo([test[2],test[3],test[4],test[5],test[6]]))
+bingolist.append(Bingo([test[8],test[9],test[10],test[11],test[12]]))
+bingolist.append(Bingo([test[14],test[15],test[16],test[17],test[18]]))
+
+bingolist[0].check_numbers("1")
+bingolist[1].check_numbers("2")
+bingolist[0].check_numbers("2")
